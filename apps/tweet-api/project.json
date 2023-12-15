@@ -1,0 +1,61 @@
+{
+  "name": "tweet-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tweet-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/tweet-api",
+        "main": "apps/tweet-api/src/main.ts",
+        "tsConfig": "apps/tweet-api/tsconfig.app.json",
+        "assets": [
+          "apps/tweet-api/src/assets"
+        ],
+        "webpackConfig": "apps/tweet-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tweet-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tweet-api:build:development"
+        },
+        "production": {
+          "buildTarget": "tweet-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/tweet-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
