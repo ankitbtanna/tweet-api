@@ -20,7 +20,7 @@ export class AppService {
   tweetAllArticles(tweets: { tags: string; tweet: string }[] = TWEETS) {
     return from(tweets).pipe(
       concatMap((tweet) =>
-        this.tweet(`${tweet.tags} ${tweet.tweet}`).pipe(delay(5000))
+        this.tweet(`${tweet.tweet} ${tweet.tags}`).pipe(delay(2000))
       ),
       toArray()
     );
@@ -28,9 +28,12 @@ export class AppService {
 
   tweet(tweet: string) {
     return from(this.twitterClient.v2.tweet(tweet)).pipe(
-      map((tweet) => tweet.data),
+      map((tweet) => {
+        console.log(`Tweeted:`, tweet);
+        return tweet.data;
+      }),
       catchError((error) => {
-        console.log(error.data.status);
+        console.log(error.data);
         return of(error.data.status);
       })
     );
