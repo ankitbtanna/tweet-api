@@ -219,4 +219,9 @@ export const TWEETS = [
       'The Rust Programming Language — Lifetime — Lifetime, Lifetime Annotations, Lifetime Elision and Static Lifetime  https://medium.com/@ankitbtanna/the-rust-programming-language-lifetime-lifetime-lifetime-annotations-lifetime-elision-and-7222339f59e5?sk=8237e3645d66477e94ac03b97c2d4638',
     tags: '#Rust #Medium',
   },
+  {
+    tweet:
+      'Follow my medium profile for best articles and visual explanation: https://medium.com/@ankitbtanna',
+    tags: '#Rust #Medium #HTML5 #WebDevelopment #JavaScript #CSS3 #Web #WebDeveloper',
+  },
 ];
